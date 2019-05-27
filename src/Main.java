@@ -60,6 +60,8 @@ public class Main {
                 "If you are the client, you run:\n" +
                 "\n" +
                 "   java -jar locked.jar client [serverAddress] [port (optional)]" +
-                "\n");
+                "\n" +
+                "If you don't know how to play, check the instructions on " +
+                "Github @ jimmyverdoora/locked.");
     }
 }
