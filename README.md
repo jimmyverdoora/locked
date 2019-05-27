@@ -1,2 +1,2 @@
-# locked
-Awesome table top game - terminal interface for multiplayer games
+# cLlocked
+Awesome table top game by M Roselli and T Fakhredine - terminal interface for multiplayer games
