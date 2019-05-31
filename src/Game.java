@@ -1,3 +1,7 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
+
 class Game {
 
     private String current;
@@ -188,16 +192,9 @@ class Board {
     }
 
     String checkVictory() {
-        boolean server = false;
-        boolean client = false;
-        if ((servers[0].getCol() == servers[1].getCol() && servers[0].getCol() == servers[2].getCol()) ||
-                (servers[0].getRow() == servers[1].getRow() && servers[0].getRow() == servers[2].getRow())) {
-            server = true;
-        }
-        if ((clients[0].getCol() == clients[1].getCol() && clients[0].getCol() == clients[2].getCol()) ||
-                (clients[0].getRow() == clients[1].getRow() && clients[0].getRow() == clients[2].getRow())) {
-            client = true;
-        }
+        boolean server = singleVictoryCheck(servers);
+        boolean client = singleVictoryCheck(clients);
+
         if (client && server) {
             return "both";
         }
@@ -210,6 +207,21 @@ class Board {
         else {
             return "NO";
         }
+    }
+
+    private boolean singleVictoryCheck(Piece[] player) {
+        if ((player[0].getCol() == player[1].getCol() && player[0].getCol() == player[2].getCol()) ||
+                (player[0].getRow() == player[1].getRow() && player[0].getRow() == player[2].getRow())) {
+            int[] cols = {player[0].getCol(), player[1].getCol(), player[2].getCol()};
+            Arrays.sort(cols);
+            if (cols[0] == cols[1] - 1 && cols[1] == cols[2] - 1) {
+                return true;
+            }
+            int[] rows = {player[0].getRow(), player[1].getRow(), player[2].getRow()};
+            Arrays.sort(rows);
+            return (rows[0] == rows[1] - 1 && rows[1] == rows[2] - 1);
+        }
+        return false;
     }
 
     void makeMove(String player, int number, String direction) {
